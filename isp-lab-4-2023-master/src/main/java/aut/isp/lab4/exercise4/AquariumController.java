@@ -1,62 +1,68 @@
 package aut.isp.lab4.exercise4;
 
-import aut.isp.lab4.exercise3.FishFeeder;
+import aut.isp.lab4.exercise4.FishFeeder;
 
 public class AquariumController {
 
-    //attributes
+    // Attributes
     private String manufacturer;
     private String model;
     private float currentTime;
     private float feedingTime;
     private FishFeeder feeder;
+    private Lights lights;
 
-    private static float lightOnTime = 10.00F;
-    private static float lightOffTime = 17.59F;
-
-    boolean light = false;
-
-    //constructors
-    public AquariumController(String manufacturer, String model, aut.isp.lab4.exercise3.FishFeeder feeder) {
+    // Constructors
+    public AquariumController(String manufacturer, String model, FishFeeder feeder, Lights lights) {
         this.manufacturer = manufacturer;
         this.model = model;
         this.currentTime = 0;
         this.feedingTime = 12.30F;
-        this. feeder = feeder;
+        this.feeder = feeder;
+        this.lights = lights;
     }
 
-    public AquariumController(String manufacturer, String model, float currentTime , aut.isp.lab4.exercise3.FishFeeder feeder) {
+    public AquariumController(String manufacturer, String model, float currentTime, FishFeeder feeder, Lights lights) {
         this.manufacturer = manufacturer;
         this.model = model;
         this.currentTime = currentTime;
         this.feedingTime = 12.30F;
-        this. feeder = feeder;
+        this.feeder = feeder;
+        this.lights = lights;
     }
 
-    public AquariumController(String manufacturer, String model, float currentTime , float feedingTime, FishFeeder feeder) {
+    public AquariumController(String manufacturer, String model, float currentTime, float feedingTime, FishFeeder feeder, Lights lights) {
         this.manufacturer = manufacturer;
         this.model = model;
         this.currentTime = currentTime;
         this.feedingTime = feedingTime;
-        this. feeder = feeder;
+        this.feeder = feeder;
+        this.lights = lights;
     }
 
-    //methods
+    // Methods
     public void setCurrentTime(float currentTime) {
         this.currentTime = currentTime;
-        if(currentTime == this.feedingTime){
+
+        // Check if it's feeding time
+        if (currentTime == this.feedingTime) {
             this.feeder.feed();
         }
-        if(this.currentTime>=this.lightOnTime && this.currentTime<=this.lightOffTime){
-            light = true;
-        }else{
-            light = false;
+
+        // Check if it's time to turn the lights on or off
+        if (currentTime >= this.lights.getLightOnTime() && currentTime < this.lights.getLightsOffTime()) {
+            if (!this.lights.isOn()) {
+                this.lights.turnOn();
+            }
+        } else {
+            if (this.lights.isOn()) {
+                this.lights.turnOff();
+            }
         }
     }
 
     public void setFeedingTime(float feedingTime) {
         this.feedingTime = feedingTime;
-
     }
 
     @Override
@@ -67,6 +73,7 @@ public class AquariumController {
                 ", currentTime = " + currentTime +
                 ", feedingTime = " + feedingTime +
                 ", feeder = " + feeder +
+                ", lights = " + lights +
                 "}";
     }
 }
