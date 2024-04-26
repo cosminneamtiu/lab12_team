@@ -36,7 +36,7 @@ public class BuyJPanel extends JPanel {
         buyPanel.setLayout(new GridLayout(10, 2));
 
         JLabel availableFundsLabel = new JLabel("Available funds:");
-        JTextField availableFundsTextField = new JTextField(mainFrame.getPortfolio().getCash().toPlainString() + " $");
+        JTextField availableFundsTextField = new JTextField(userPortfolio.getCash().toPlainString() + " $");
         availableFundsTextField.setEditable(false);
 
         JLabel symbolLabel = new JLabel("Symbol:");
@@ -130,6 +130,7 @@ public class BuyJPanel extends JPanel {
                 availableFunds = availableFunds.subtract(totalCost);
                 mainFrame.getPortfolio().setCash(availableFunds);
                 JOptionPane.showMessageDialog(this, "Purchase successful!");
+                updateUIComponents();
             } else {
                 JOptionPane.showMessageDialog(this, "Insufficient funds!");
             }
@@ -146,6 +147,15 @@ public class BuyJPanel extends JPanel {
         int currentShares = shares.getOrDefault(symbol, 0);
         shares.put(symbol, currentShares + quantity);
         userPortfolio.setShares(shares);
+    }
+
+    private void updateUIComponents() {
+        // Update available funds text field
+        JTextField availableFundsTextField = (JTextField) ((JPanel) this.getComponent(0)).getComponent(1);
+        availableFundsTextField.setText(userPortfolio.getCash().toPlainString() + " $");
+
+        // Optionally, update other UI components based on the updated data
+        // For example, you might update the stock list or any other relevant components
     }
 }
 
