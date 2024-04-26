@@ -125,7 +125,7 @@ public class Exercise {
             System.out.println(routeName);
         }
 
-        
+
         routeManager.deleteRoute("LRCL-LROP");
     }
 }
