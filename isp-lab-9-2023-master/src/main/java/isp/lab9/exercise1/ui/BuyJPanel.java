@@ -22,10 +22,11 @@ import javax.swing.*;
 
 public class BuyJPanel extends JPanel {
     private StockMarketJFrame mainFrame;
-    private UserPortfolio userPortfolio = new UserPortfolio(new BigDecimal(1000), new TreeMap<>());
+    public UserPortfolio userPortfolio;
 
-    public BuyJPanel(StockMarketJFrame mainFrame) {
+    public BuyJPanel(StockMarketJFrame mainFrame, UserPortfolio userPortfolio) {
         this.mainFrame = mainFrame;
+        this.userPortfolio = userPortfolio;
         initComponents();
     }
 
@@ -33,7 +34,7 @@ public class BuyJPanel extends JPanel {
         setLayout(new GridLayout(2, 2));
 
         JPanel buyPanel = new JPanel();
-        buyPanel.setLayout(new GridLayout(10, 2));
+        buyPanel.setLayout(new GridLayout(12, 2));
 
         JLabel availableFundsLabel = new JLabel("Available funds:");
         JTextField availableFundsTextField = new JTextField(userPortfolio.getCash().toPlainString() + " $");
@@ -58,6 +59,10 @@ public class BuyJPanel extends JPanel {
         costButton.addActionListener(e ->
                 calculateTotalCostActionPerformed(symbolComboBox, quantityTextField, costTextField));
 
+        JButton refreshButton = new JButton("Refresh");
+        refreshButton.addActionListener(e ->
+                updateUIComponents());
+
         buyPanel.add(availableFundsLabel);
         buyPanel.add(availableFundsTextField);
         buyPanel.add(new JPanel()); // empty cell in the grid
@@ -76,6 +81,8 @@ public class BuyJPanel extends JPanel {
         buyPanel.add(new JPanel()); // empty cell in the grid
         buyPanel.add(costButton);
         buyPanel.add(buyButton);
+        buyPanel.add(new JPanel());
+        buyPanel.add(refreshButton);
         add(buyPanel);
         add(new JPanel()); // empty cell in the grid
         add(new JPanel()); // empty cell in the grid
@@ -150,12 +157,12 @@ public class BuyJPanel extends JPanel {
     }
 
     private void updateUIComponents() {
-        // Update available funds text field
-        JTextField availableFundsTextField = (JTextField) ((JPanel) this.getComponent(0)).getComponent(1);
-        availableFundsTextField.setText(userPortfolio.getCash().toPlainString() + " $");
+        this.removeAll();
 
-        // Optionally, update other UI components based on the updated data
-        // For example, you might update the stock list or any other relevant components
+        initComponents();
+
+        this.revalidate();
+        this.repaint();
     }
 }
 

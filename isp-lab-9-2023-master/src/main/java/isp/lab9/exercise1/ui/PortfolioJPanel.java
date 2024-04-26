@@ -15,8 +15,9 @@ public class PortfolioJPanel extends JPanel {
     private StockMarketJFrame frame;
     private UserPortfolio userPortfolio;
 
-    public PortfolioJPanel(StockMarketJFrame frame) {
+    public PortfolioJPanel(StockMarketJFrame frame, UserPortfolio userPortfolio) {
         this.frame = frame;
+        this.userPortfolio = userPortfolio;
         initComponent();
     }
 
