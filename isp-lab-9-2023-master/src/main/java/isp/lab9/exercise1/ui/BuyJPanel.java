@@ -34,7 +34,7 @@ public class BuyJPanel extends JPanel {
         setLayout(new GridLayout(2, 2));
 
         JPanel buyPanel = new JPanel();
-        buyPanel.setLayout(new GridLayout(12, 2));
+        buyPanel.setLayout(new GridLayout(10, 2));
 
         JLabel availableFundsLabel = new JLabel("Available funds:");
         JTextField availableFundsTextField = new JTextField(userPortfolio.getCash().toPlainString() + " $");
