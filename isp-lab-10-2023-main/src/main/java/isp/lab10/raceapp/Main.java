@@ -97,7 +97,7 @@ public class Main {
 
         JOptionPane.showMessageDialog(null, "Race Standings:\n1. " + standings[0] + "\n2. " + standings[1] +
                 "\n3. " + standings[2] + "\n4. " + standings[3]);
-        
+
         System.out.println("Race Duration for each Car:");
         for (String standing : standings) {
             System.out.println(standing);
