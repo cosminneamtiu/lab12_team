@@ -8,13 +8,13 @@ public class Person {
     private String lastName;
 
     public Person(String firstName) {
-        this.lastName = "asdasdasdasdasd";
+        this.lastName = "";
         this.firstName = firstName;
     }
 
     public Person(String firstName, String lastName) {
         this.firstName = firstName;
-        this.lastName = "BlaBlaBlaBla";
+        this.lastName = lastName;
     }
 
     public String getFirstName() {
