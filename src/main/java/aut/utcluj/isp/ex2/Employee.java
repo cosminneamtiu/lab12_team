@@ -3,14 +3,11 @@ package aut.utcluj.isp.ex2;
 /**
  * @author stefan
  */
-public class Employee {
-    private String firstName;
-    private String lastName;
+public class Employee extends Person{
     private Double salary;
 
     public Employee(String firstName, String lastName, Double salary) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+        super(firstName,lastName);
         this.salary = salary;
         // throw new UnsupportedOperationException("Not supported yet.");
     }
@@ -23,10 +20,8 @@ public class Employee {
      * Show employee information
      * @return employee information (Firstname: firstname Lastname: lastname Salary: salary)
      */
-
-
     public String showEmployeeInfo() {
-        return String.format("First Name: %s, Last Name: %s, Salary: %.2f",firstName,lastName,salary);
+            return "Firstname: " + this.getFirstName() + " Lastname: " + this.getLastName() + " Salary: " + salary;
         // throw new UnsupportedOperationException("Not supported yet.");
     }
 }
