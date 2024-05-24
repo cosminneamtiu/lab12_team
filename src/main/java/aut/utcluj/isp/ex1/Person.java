@@ -9,11 +9,12 @@ public class Person {
 
     public Person(String firstName) {
         this.lastName = "";
-       // throw new UnsupportedOperationException("Not supported yet.");
+        this.firstName = firstName;
     }
 
     public Person(String firstName, String lastName) {
-       // throw new UnsupportedOperationException("Not supported yet.");
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
     public String getFirstName() {
@@ -22,5 +23,18 @@ public class Person {
 
     public String getLastName() {
         return lastName;
+    }
+
+    @Override
+    public String toString(){
+        return (firstName + " " + lastName);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Person person = (Person) obj;
+        return firstName.equals(person.firstName) && lastName.equals(person.lastName);
     }
 }
