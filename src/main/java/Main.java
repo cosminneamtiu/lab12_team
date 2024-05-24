@@ -1,2 +1,4 @@
-package src.main.java;public class Main {
+package src.main.java;
+
+public class Main {
 }
