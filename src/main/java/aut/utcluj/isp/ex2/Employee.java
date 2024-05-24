@@ -4,10 +4,15 @@ package aut.utcluj.isp.ex2;
  * @author stefan
  */
 public class Employee {
+    private String firstName;
+    private String lastName;
     private Double salary;
 
     public Employee(String firstName, String lastName, Double salary) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.salary = salary;
+        // throw new UnsupportedOperationException("Not supported yet.");
     }
 
     public Double getSalary() {
@@ -18,7 +23,10 @@ public class Employee {
      * Show employee information
      * @return employee information (Firstname: firstname Lastname: lastname Salary: salary)
      */
+
+
     public String showEmployeeInfo() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return String.format("First Name: %s, Last Name: %s, Salary: %.2f",firstName,lastName,salary);
+        // throw new UnsupportedOperationException("Not supported yet.");
     }
 }

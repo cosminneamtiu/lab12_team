@@ -3,7 +3,11 @@ package aut.utcluj.isp.ex2;
 /**
  * @author stefan
  */
+
+
 public class Person {
+
+
     private String firstName;
     private String lastName;
 
