@@ -1,16 +1,16 @@
 package aut.utcluj.isp.ex4;
 
-/**
- * @author stefan
- */
-public class Employee {
+public class Employee implements IdentityManager {
     private String firstName;
     private String lastName;
     private String cnp;
     private SalaryInfo employeeSalaryInfo;
 
     public Employee(String firstName, String lastName, String cnp, Double monthlyRevenue) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.cnp = cnp;
+        this.employeeSalaryInfo = new SalaryInfo(monthlyRevenue);
     }
 
     public String getFirstName() {
@@ -29,7 +29,7 @@ public class Employee {
      * Add salary to the employee
      */
     public void addSalary() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        this.employeeSalaryInfo.addSalary();
     }
 
     /**
@@ -39,7 +39,7 @@ public class Employee {
      * @param money - money to be added
      */
     public void addMoney(final Double money) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        this.employeeSalaryInfo.addMoney(money);
     }
 
     /**
@@ -48,7 +48,7 @@ public class Employee {
      * @param tax - tax to be paid
      */
     public void payTax(final Double tax) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        this.employeeSalaryInfo.payTax(tax);
     }
 
     /**
@@ -57,6 +57,16 @@ public class Employee {
      * @return salary info
      */
     public SalaryInfo getSalaryInfo() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return this.employeeSalaryInfo;
+    }
+
+    /**
+     * Get identity info
+     *
+     * @return identity info
+     */
+    @Override
+    public String getIdentity() {
+        return String.format("%s_%s_%s", firstName, lastName, cnp);
     }
 }
